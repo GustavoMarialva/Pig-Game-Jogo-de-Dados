@@ -95,3 +95,4 @@ btnHold.addEventListener('click', function () {
 
 // Reseting the game
 btnNew.addEventListener('click', init);
+// teste
