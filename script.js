@@ -1,5 +1,7 @@
 'use strict';
 // Selecting elements
+const player0EL = document.querySelector('.player--0');
+const player1EL = document.querySelector('.player--1');
 const score0El = document.querySelector('#score--0');
 const score1El = document.getElementById('score--1'); //outra forma de selecionar o ID
 const current0El = document.getElementById('current--0');
@@ -14,7 +16,9 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
+const scores = [0, 0];
 let currentScore = 0;
+let activePlayer = 0;
 
 // Rolling Dice Functionality
 btnRoll.addEventListener('click', function () {
@@ -29,8 +33,16 @@ btnRoll.addEventListener('click', function () {
   if (dice !== 1) {
     // add dice to current score
     currentScore += dice;
-    current0El.textContent = currentScore; //Chance Later
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
+    // current0El.textContent = currentScore; //Chance Later
   } else {
     // switch to next player
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    player0EL.classList.toggle('player--active');
+    player1EL.classList.toggle('player--active');
+    // CLASSLIST.TOGGLE REMOVE A CLASSE SE ELA EXISTIR OU ADICIONA SE NÃO EXISTIR. MAIS FÁCIL DE USAR.
   }
 });
